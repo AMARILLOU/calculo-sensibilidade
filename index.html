@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo de Sensibilidade</title>
+    <title>Sensibilidade Valorant</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,8 +20,16 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 350px;
             text-align: center;
+        }
+        h1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
         }
         label {
             margin-top: 10px;
@@ -59,117 +67,68 @@
             display: none; /* Inicialmente oculto */
             white-space: nowrap;
         }
-        .input-section {
-            display: none;
-            margin-top: 15px;
-        }
-        .options {
-            display: flex;
-            justify-content: center; /* Centraliza as opções */
+        .info {
+            text-align: left;
+            font-size: 0.9em;
+            color: #555;
             margin-bottom: 15px;
-        }
-        .options label {
-            margin: 0 10px; /* Espaçamento entre as opções */
+            line-height: 1.4;
         }
     </style>
     <script>
-        function toggleInputSection() {
-            const selectedOption = document.querySelector('input[name="calculo"]:checked').value;
-            const sections = document.querySelectorAll('.input-section');
-            sections.forEach(section => {
-                section.style.display = 'none';
-            });
-            // Mostra a seção correta com base na opção selecionada
-            if (selectedOption === 'mousePad') {
-                document.getElementById('mousePadSection').style.display = 'block';
-            } else {
-                document.getElementById('sensFinalSection').style.display = 'block';
-            }
-        }
-
         function calcular() {
             const dpi = parseFloat(document.getElementById('dpi').value);
             const mousePad = parseFloat(document.getElementById('mousePad').value);
-            const sensFinal = parseFloat(document.getElementById('sensFinal').value);
 
             let resultado = '';
-            let mousePadResult = '';
-            let sensFinalResult = '';
 
             if (!isNaN(mousePad) && !isNaN(dpi)) {
                 // Calcular a sensibilidade final
                 const Y = (-45 * mousePad) + 3000;
                 const Z1 = Y / dpi;
-                sensFinalResult = (Z1 / 3.18).toFixed(4); // 4 casas decimais
-            } else if (!isNaN(sensFinal) && !isNaN(dpi)) {
-                // Calcular o mouse pad
-                const Z1 = sensFinal * 3.18;
-                const Y = Z1 * dpi;
-                mousePadResult = ((Y - 3000) / -45).toFixed(4); // 4 casas decimais
-            }
+                const sensFinalResult = (Z1 / 3.18).toFixed(4); // 4 casas decimais
 
-            // Verificar se os resultados foram calculados
-            if (sensFinalResult) {
                 resultado = `
                     DPI = ${dpi}<br>
                     Mouse Pad (cm) = ${mousePad}<br>
                     Sensibilidade Final = ${sensFinalResult}
                 `;
-            } else if (mousePadResult) {
-                resultado = `
-                    DPI = ${dpi}<br>
-                    Mouse Pad (cm) = ${mousePadResult}<br>
-                    Sensibilidade Final = ${sensFinal}
-                `;
             } else {
-                resultado = 'Por favor, preencha dois campos válidos.';
+                resultado = 'Por favor, preencha todos os campos.';
             }
 
             document.getElementById('resultado').innerHTML = resultado;
-            document.getElementById('resultado').style.display = 'block'; // Mostrar resultados após cálculo
+            document.getElementById('resultado').style.display = 'block';
         }
 
         function limpar() {
             document.getElementById('dpi').value = '';
             document.getElementById('mousePad').value = '';
-            document.getElementById('sensFinal').value = '';
             document.getElementById('resultado').innerHTML = '';
-            document.getElementById('resultado').style.display = 'none'; // Esconder resultados
-            const sections = document.querySelectorAll('.input-section');
-            sections.forEach(section => {
-                section.style.display = 'none';
-            });
-            document.querySelector('input[name="calculo"]:checked').checked = false; // desmarcar opção
+            document.getElementById('resultado').style.display = 'none';
         }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Cálculo de Sensibilidade</h1>
+        <h1>Sensibilidade Valorant</h1>
         
-        <div class="options">
-            <label>
-                Sensibilidade Final
-                <input type="radio" name="calculo" value="sensFinal" onclick="toggleInputSection()">
-            </label>
-            <label>
-                Mouse Pad
-                <input type="radio" name="calculo" value="mousePad" onclick="toggleInputSection()">
-            </label>
+        <div class="info">
+            <p>Esta ferramenta calcula a sensibilidade ideal para Valorant com base no DPI do mouse e tamanho do mouse pad.</p>
+            <p><strong>Instruções:</strong></p>
+            <ol>
+                <li>Digite o DPI do mouse.</li>
+                <li>Digite o tamanho do mouse pad (cm).</li>
+                <li>Clique em "Calcular" para ver o resultado.</li>
+                <li>Para resetar, clique em "Limpar".</li>
+            </ol>
         </div>
-        
+
         <label for="dpi">DPI: </label>
         <input type="number" id="dpi" step="1" placeholder="Ex: 1600">
         
-        <div id="mousePadSection" class="input-section">
-            <label for="mousePad">Mouse Pad (cm): </label>
-            <input type="number" id="mousePad" step="0.01" placeholder="Ex: 30">
-        </div>
-        
-        <div id="sensFinalSection" class="input-section">
-            <label for="sensFinal">Sensibilidade Final: </label>
-            <input type="number" id="sensFinal" step="0.0001" placeholder="Ex: 0.2">
-        </div>
+        <label for="mousePad">Mouse Pad (cm): </label>
+        <input type="number" id="mousePad" step="0.01" placeholder="Ex: 30">
         
         <button onclick="calcular()">Calcular</button>
         <button onclick="limpar()">Limpar</button>
