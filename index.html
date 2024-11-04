@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Sensibilidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            text-align: left;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin-top: 5px;
+            width: calc(100% - 16px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none; /* Inicialmente oculto */
+            white-space: nowrap;
+        }
+        .input-section {
+            display: none;
+            margin-top: 15px;
+        }
+        .options {
+            display: flex;
+            justify-content: center; /* Centraliza as opções */
+            margin-bottom: 15px;
+        }
+        .options label {
+            margin: 0 10px; /* Espaçamento entre as opções */
+        }
+    </style>
+    <script>
+        function toggleInputSection() {
+            const selectedOption = document.querySelector('input[name="calculo"]:checked').value;
+            const sections = document.querySelectorAll('.input-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            // Mostra a seção correta com base na opção selecionada
+            if (selectedOption === 'mousePad') {
+                document.getElementById('mousePadSection').style.display = 'block';
+            } else {
+                document.getElementById('sensFinalSection').style.display = 'block';
+            }
+        }
+
+        function calcular() {
+            const dpi = parseFloat(document.getElementById('dpi').value);
+            const mousePad = parseFloat(document.getElementById('mousePad').value);
+            const sensFinal = parseFloat(document.getElementById('sensFinal').value);
+
+            let resultado = '';
+            let mousePadResult = '';
+            let sensFinalResult = '';
+
+            if (!isNaN(mousePad) && !isNaN(dpi)) {
+                // Calcular a sensibilidade final
+                const Y = (-45 * mousePad) + 3000;
+                const Z1 = Y / dpi;
+                sensFinalResult = (Z1 / 3.18).toFixed(4); // 4 casas decimais
+            } else if (!isNaN(sensFinal) && !isNaN(dpi)) {
+                // Calcular o mouse pad
+                const Z1 = sensFinal * 3.18;
+                const Y = Z1 * dpi;
+                mousePadResult = ((Y - 3000) / -45).toFixed(4); // 4 casas decimais
+            }
+
+            // Verificar se os resultados foram calculados
+            if (sensFinalResult) {
+                resultado = `
+                    DPI = ${dpi}<br>
+                    Mouse Pad (cm) = ${mousePad}<br>
+                    Sensibilidade Final = ${sensFinalResult}
+                `;
+            } else if (mousePadResult) {
+                resultado = `
+                    DPI = ${dpi}<br>
+                    Mouse Pad (cm) = ${mousePadResult}<br>
+                    Sensibilidade Final = ${sensFinal}
+                `;
+            } else {
+                resultado = 'Por favor, preencha dois campos válidos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+            document.getElementById('resultado').style.display = 'block'; // Mostrar resultados após cálculo
+        }
+
+        function limpar() {
+            document.getElementById('dpi').value = '';
+            document.getElementById('mousePad').value = '';
+            document.getElementById('sensFinal').value = '';
+            document.getElementById('resultado').innerHTML = '';
+            document.getElementById('resultado').style.display = 'none'; // Esconder resultados
+            const sections = document.querySelectorAll('.input-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelector('input[name="calculo"]:checked').checked = false; // desmarcar opção
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Cálculo de Sensibilidade</h1>
+        
+        <div class="options">
+            <label>
+                Sensibilidade Final
+                <input type="radio" name="calculo" value="sensFinal" onclick="toggleInputSection()">
+            </label>
+            <label>
+                Mouse Pad
+                <input type="radio" name="calculo" value="mousePad" onclick="toggleInputSection()">
+            </label>
+        </div>
+        
+        <label for="dpi">DPI: </label>
+        <input type="number" id="dpi" step="1" placeholder="Ex: 1600">
+        
+        <div id="mousePadSection" class="input-section">
+            <label for="mousePad">Mouse Pad (cm): </label>
+            <input type="number" id="mousePad" step="0.01" placeholder="Ex: 30">
+        </div>
+        
+        <div id="sensFinalSection" class="input-section">
+            <label for="sensFinal">Sensibilidade Final: </label>
+            <input type="number" id="sensFinal" step="0.0001" placeholder="Ex: 0.2">
+        </div>
+        
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="limpar()">Limpar</button>
+        
+        <div id="resultado"></div> <!-- Inicialmente oculta -->
+    </div>
+</body>
+</html>
