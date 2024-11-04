@@ -10,16 +10,17 @@
             margin: 0;
             padding: 20px;
             background-image: url('https://github.com/AMARILLOU/calculo-sensibilidade/blob/main/background.jpg?raw=true');
-            background-size: cover; /* Ajusta a imagem para cobrir todo o fundo */
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #fff; /* Ajuste da cor do texto para melhor visibilidade */
-            position: relative; /* Necessário para posicionar a marca no canto */
+            overflow: hidden; /* Remove a rolagem */
+            color: #fff;
+            position: relative;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,14 +36,14 @@
             border-bottom: 2px solid #ddd;
         }
         .logo {
-            width: 100px; /* Define a largura da logo */
-            margin-bottom: 15px; /* Espaçamento abaixo da logo */
+            width: 100px;
+            margin-bottom: 15px;
         }
         label {
             margin-top: 10px;
             display: block;
             text-align: left;
-            color: #555; /* Cor do texto dos rótulos */
+            color: #555;
         }
         input[type="number"] {
             padding: 8px;
@@ -72,7 +73,7 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 4px;
-            display: none; /* Inicialmente oculto */
+            display: none;
             white-space: nowrap;
         }
         .info {
@@ -83,18 +84,18 @@
             line-height: 1.4;
         }
         .credit {
-            position: absolute; /* Posiciona a marca de forma absoluta em relação ao body */
-            bottom: 0.1px; /* Distância do fundo */
-            right: 0.1px; /* Distância da direita */
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
             font-size: 1em;
-            color: #fff; /* Cor do texto da marca */
-            display: flex; /* Permite alinhar texto e imagem horizontalmente */
-            align-items: center; /* Centraliza verticalmente os itens */
+            color: #fff;
+            display: flex;
+            align-items: center;
         }
         .credit img {
-            width: 200px; /* Aumenta a largura da imagem da marca */
-            height: auto; /* Mantém a proporção da imagem */
-            margin-left: 0px; /* Espaçamento entre o texto e a imagem */
+            width: 200px;
+            height: auto;
+            margin-left: 5px;
         }
     </style>
     <script>
@@ -105,10 +106,9 @@
             let resultado = '';
 
             if (!isNaN(mousePad) && !isNaN(dpi)) {
-                // Calcular a sensibilidade final
                 const Y = (-45 * mousePad) + 3000;
                 const Z1 = Y / dpi;
-                const sensFinalResult = (Z1 / 3.18).toFixed(4); // 4 casas decimais
+                const sensFinalResult = (Z1 / 3.18).toFixed(4);
 
                 resultado = `
                     DPI = ${dpi}<br>
@@ -156,7 +156,7 @@
         <button onclick="calcular()">Calcular</button>
         <button onclick="limpar()">Limpar</button>
         
-        <div id="resultado"></div> <!-- Inicialmente oculta -->
+        <div id="resultado"></div>
     </div>
 
     <div class="credit">
