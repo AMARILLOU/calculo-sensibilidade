@@ -16,6 +16,7 @@
             align-items: center;
             height: 100vh;
             color: #fff; /* Ajuste da cor do texto para melhor visibilidade */
+            position: relative; /* Necessário para posicionar a marca no canto */
         }
         .container {
             background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
@@ -81,6 +82,20 @@
             margin-bottom: 15px;
             line-height: 1.4;
         }
+        .credit {
+            position: absolute; /* Posiciona a marca de forma absoluta em relação ao body */
+            bottom: 0.1px; /* Distância do fundo */
+            right: 0.1px; /* Distância da direita */
+            font-size: 1em;
+            color: #fff; /* Cor do texto da marca */
+            display: flex; /* Permite alinhar texto e imagem horizontalmente */
+            align-items: center; /* Centraliza verticalmente os itens */
+        }
+        .credit img {
+            width: 200px; /* Aumenta a largura da imagem da marca */
+            height: auto; /* Mantém a proporção da imagem */
+            margin-left: 0px; /* Espaçamento entre o texto e a imagem */
+        }
     </style>
     <script>
         function calcular() {
@@ -142,6 +157,11 @@
         <button onclick="limpar()">Limpar</button>
         
         <div id="resultado"></div> <!-- Inicialmente oculta -->
+    </div>
+
+    <div class="credit">
+        Criado por AMARILLOU
+        <img src="https://github.com/AMARILLOU/calculo-sensibilidade/blob/main/amarillou.png?raw=true" alt="Imagem de crédito">
     </div>
 </body>
 </html>
