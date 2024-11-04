@@ -2,6 +2,8 @@
 
 Esta é uma ferramenta interativa desenvolvida em HTML e JavaScript para calcular a sensibilidade final do jogo **Valorant** com base no DPI do mouse e no tamanho do mouse pad, ou para calcular o tamanho do mouse pad com base no DPI e na sensibilidade final.
 
+## [Acesse a Ferramenta Aqui](https://amarillou.github.io/calculo-sensibilidade/)
+
 ## Funcionalidades
 
 - **Cálculo da Sensibilidade Final**: Informe o DPI do mouse e o tamanho do mouse pad em centímetros para obter a sensibilidade final dentro do jogo.
@@ -44,4 +46,4 @@ Este projeto está disponível sob a [Licença MIT](LICENSE).
 
 ---
 
-Este README cobre as principais funcionalidades e instruções para uso da ferramenta de cálculo de sensibilidade para Valorant.
+Com o link incluído, os usuários podem acessar diretamente a ferramenta no GitHub Pages!
