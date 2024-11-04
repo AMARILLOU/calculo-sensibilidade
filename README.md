@@ -1,49 +1,39 @@
-# Ferramenta de Cálculo de Sensibilidade para Valorant
+# Sensibilidade Valorant
 
-Esta é uma ferramenta interativa desenvolvida em HTML e JavaScript para calcular a sensibilidade final do jogo **Valorant** com base no DPI do mouse e no tamanho do mouse pad, ou para calcular o tamanho do mouse pad com base no DPI e na sensibilidade final.
+Ferramenta para calcular a sensibilidade ideal no jogo Valorant com base no DPI do mouse e no tamanho do mouse pad.
 
-## [Acesse a Ferramenta Aqui](https://amarillou.github.io/calculo-sensibilidade/)
+## 🔍 Visão Geral
 
-## Funcionalidades
+Este projeto é uma ferramenta simples que permite calcular a sensibilidade final para o jogo **Valorant** usando o DPI do seu mouse e as dimensões do mouse pad. O cálculo é baseado em uma fórmula específica que ajusta a sensibilidade de acordo com esses parâmetros.
 
-- **Cálculo da Sensibilidade Final**: Informe o DPI do mouse e o tamanho do mouse pad em centímetros para obter a sensibilidade final dentro do jogo.
-- **Cálculo do Tamanho do Mouse Pad**: Informe o DPI do mouse e a sensibilidade final desejada para determinar o tamanho ideal do mouse pad.
-- **Interface Simples e Intuitiva**: Campos dinâmicos que exibem apenas as opções necessárias para o cálculo desejado.
+## 🚀 Como Usar
 
-## Como Usar
+1. Acesse a ferramenta através deste link: [Sensibilidade Valorant](https://amarillou.github.io/calculo-sensibilidade/)
+2. Insira o valor do **DPI do seu mouse**.
+3. Insira o tamanho do **mouse pad em centímetros**.
+4. Clique no botão **Calcular** para obter a sensibilidade final ideal para o Valorant.
+5. Para redefinir os campos, clique no botão **Limpar**.
 
-1. **Selecionar a Opção de Cálculo**:
-   - Escolha entre **Sensibilidade Final** ou **Mouse Pad** usando os botões de seleção.
-   
-2. **Preencher os Campos Necessários**:
-   - Para **Sensibilidade Final**: Preencha o DPI do mouse e o tamanho do mouse pad.
-   - Para **Mouse Pad**: Preencha o DPI do mouse e a sensibilidade final.
-   
-3. **Calcular**:
-   - Clique em **Calcular** para obter o resultado.
-   - Os valores calculados serão exibidos abaixo, incluindo o DPI, o tamanho do mouse pad, e a sensibilidade final.
+## 🔧 Funcionalidades
 
-4. **Limpar**:
-   - Clique no botão **Limpar** para redefinir todos os campos e realizar um novo cálculo.
+- **Cálculo de Sensibilidade**: Calcula a sensibilidade final com base no DPI e no tamanho do mouse pad, de acordo com uma fórmula específica para Valorant.
+- **Interface Simples e Intuitiva**: Interface limpa e responsiva, projetada para facilitar o uso e a visualização.
+- **Modo de Limpeza**: Um botão de limpeza redefine os campos para novos cálculos.
 
-## Requisitos do Projeto
+## 📚 Fórmula de Cálculo
 
-Este projeto é baseado em HTML, CSS e JavaScript e pode ser executado em qualquer navegador moderno.
+A fórmula usada para o cálculo da sensibilidade final é baseada nos valores de DPI e mouse pad, e ajusta automaticamente a sensibilidade para proporcionar a melhor experiência no Valorant.
 
-## Exemplo de Cálculo
+## 🎨 Design
 
-- **Base**: `(-45. Mouse pad em cm) + 3000 = ?`
-- `?/ DPI mouse = ?`
-- `?/ 3.18 = Sensibilidade Final`
+O design utiliza cores neutras (preto, branco e cinza) para uma leitura confortável. O título e os campos são organizados de forma centralizada e fácil de preencher, com instruções claras para cada etapa.
 
-## Contribuição
+## 💻 Tecnologias Utilizadas
 
-Sinta-se à vontade para fazer um fork deste projeto e propor melhorias. Abra uma **issue** para discutir qualquer alteração que você tenha em mente.
-
-## Licença
-
-Este projeto está disponível sob a [Licença MIT](LICENSE).
+- **HTML5**
+- **CSS3**
+- **JavaScript**
 
 ---
 
-Com o link incluído, os usuários podem acessar diretamente a ferramenta no GitHub Pages!
+Este README oferece uma explicação detalhada sobre o uso e funcionamento da ferramenta. Caso precise de mais informações ou queira sugerir melhorias, sinta-se à vontade para abrir uma issue ou entrar em contato!
