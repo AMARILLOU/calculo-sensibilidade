@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensibilidade Valorant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://github.com/AMARILLOU/calculo-sensibilidade/blob/main/background.jpg?raw=true');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            position: relative;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+        .logo {
+            width: 100px;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            text-align: left;
+            color: #555;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin-top: 5px;
+            width: calc(100% - 16px);
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+            white-space: nowrap;
+        }
+        .info {
+            text-align: left;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .credit {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .credit img {
+            width: 50px;
+            height: auto;
+            margin-left: 5px;
+        }
+
+        /* Responsivo para mobile */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+            .credit {
+                position: static;
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
+    </style>
+    <script>
+        function calcular() {
+            const dpi = parseFloat(document.getElementById('dpi').value);
+            const mousePad = parseFloat(document.getElementById('mousePad').value);
+
+            let resultado = '';
+
+            if (!isNaN(mousePad) && !isNaN(dpi)) {
+                const Y = (-45 * mousePad) + 3000;
+                const Z1 = Y / dpi;
+                const sensFinalResult = (Z1 / 3.18).toFixed(4);
+
+                resultado = `
+                    DPI = ${dpi}<br>
+                    Mouse Pad (cm) = ${mousePad}<br>
+                    Sensibilidade Final = ${sensFinalResult}
+                `;
+            } else {
+                resultado = 'Por favor, preencha todos os campos.';
+            }
+
+            document.getElementById('resultado').innerHTML = resultado;
+            document.getElementById('resultado').style.display = 'block';
+        }
+
+        function limpar() {
+            document.getElementById('dpi').value = '';
+            document.getElementById('mousePad').value = '';
+            document.getElementById('resultado').innerHTML = '';
+            document.getElementById('resultado').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="https://github.com/AMARILLOU/calculo-sensibilidade/blob/main/logo.png?raw=true" alt="Logo" class="logo">
+        <h1>Sensibilidade Valorant</h1>
+        
+        <div class="info">
+            <p>Esta ferramenta calcula a sensibilidade ideal para Valorant com base no DPI do mouse e tamanho do mouse pad.</p>
+            <p><strong>Instruções:</strong></p>
+            <ol>
+                <li>Digite o DPI do mouse.</li>
+                <li>Digite o tamanho do mouse pad (cm).</li>
+                <li>Clique em "Calcular" para ver o resultado.</li>
+                <li>Para resetar, clique em "Limpar".</li>
+            </ol>
+        </div>
+
+        <label for="dpi">DPI: </label>
+        <input type="number" id="dpi" step="1" placeholder="Ex: 1600">
+        
+        <label for="mousePad">Mouse Pad (cm): </label>
+        <input type="number" id="mousePad" step="0.01" placeholder="Ex: 30">
+        
+        <button onclick="calcular()">Calcular</button>
+        <button onclick="limpar()">Limpar</button>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <div class="credit">
+        Criado por AMARILLOU
+        <img src="https://github.com/AMARILLOU/calculo-sensibilidade/blob/main/amarillou.png?raw=true" alt="Imagem de crédito">
+    </div>
+</body>
+</html>
